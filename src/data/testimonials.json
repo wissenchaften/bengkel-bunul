@@ -1,0 +1,46 @@
+[
+  {
+    "id": "testi-1",
+    "name": "Budi Santoso",
+    "initials": "BS",
+    "vehicle": "Toyota Innova 2020",
+    "rating": 5,
+    "review": "Servis transmisi di sini hasilnya rapi dan mekaniknya jujur soal kondisi mobil. Tidak ada part yang dipaksa ganti kalau masih layak. Sangat direkomendasikan untuk pemilik Innova yang mencari bengkel transparan.",
+    "date": "Oktober 2026",
+    "avatarBg": "bg-primary-fixed",
+    "textColor": "text-primary"
+  },
+  {
+    "id": "testi-2",
+    "name": "Hendra Kusuma",
+    "initials": "HK",
+    "vehicle": "Honda Civic Turbo 2019",
+    "rating": 5,
+    "review": "Masalah getar kaki-kaki dan bunyi di suspensi depan selesai dalam sehari. Hasil balancing dan spooring sangat presisi saat mobil dipacu di jalan tol dengan kecepatan tinggi.",
+    "date": "September 2026",
+    "avatarBg": "bg-tertiary-fixed",
+    "textColor": "text-on-tertiary-fixed"
+  },
+  {
+    "id": "testi-3",
+    "name": "dr. Aditya Pratama",
+    "initials": "AP",
+    "vehicle": "Mitsubishi Pajero 2021",
+    "rating": 5,
+    "review": "AC mobil tidak dingin setelah dipakai macet panjang. Dibawa ke Bunul langsung ketemu sensor kotor dan freon berkurang. Pengerjaan cepat, estimasi biaya transparan di awal, dan ruang tunggu ber-AC nyaman.",
+    "date": "November 2026",
+    "avatarBg": "bg-primary-fixed",
+    "textColor": "text-primary"
+  },
+  {
+    "id": "testi-4",
+    "name": "Rina Wulandari",
+    "initials": "RW",
+    "vehicle": "Suzuki Ertiga 2022",
+    "rating": 5,
+    "review": "Sangat bersahabat untuk kustomer wanita. Mekaniknya ramah menjelaskan permasalahan mesin tanpa istilah rumit yang membingungkan. Total biaya servis sesuai taksiran awal tanpa ada tambahan tak terduga.",
+    "date": "November 2026",
+    "avatarBg": "bg-secondary-fixed",
+    "textColor": "text-on-secondary-fixed"
+  }
+]
