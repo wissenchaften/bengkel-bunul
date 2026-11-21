@@ -7,6 +7,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight, MessageSquare, Phone } from "lucide-react";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
+import { smoothScrollTo } from "@/lib/scroll";
 
 const emptySubscribe = () => () => {};
 
@@ -70,10 +71,7 @@ export function Navbar() {
   const handleNavClick = (id: string) => {
     setMobileMenuOpen(false);
     setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
+      smoothScrollTo(id);
     }, 100);
   };
 
@@ -91,7 +89,8 @@ export function Navbar() {
           {/* Brand Logo & Name */}
           <Link
             href="#hero"
-            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-primary-container rounded-lg p-1"
+            onClick={(e) => smoothScrollTo("hero", e)}
+            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-primary-container rounded-lg p-1 cursor-pointer"
             aria-label="Bengkel Mobil Bunul Beranda"
           >
             <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0">
@@ -99,6 +98,7 @@ export function Navbar() {
                 src="/images/logo-bengkel-bunul.png"
                 alt="Logo Bengkel Mobil Bunul"
                 fill
+                sizes="(max-width: 640px) 32px, 36px"
                 className="object-contain transition-transform duration-200 group-hover:scale-105"
                 priority
               />
@@ -125,8 +125,9 @@ export function Navbar() {
                 <Link
                   key={item.id}
                   href={`#${item.id}`}
+                  onClick={(e) => smoothScrollTo(item.id, e)}
                   aria-current={isActive ? "page" : undefined}
-                  className={`transition-all duration-200 font-label text-xs sm:text-sm px-3.5 py-1.5 rounded-full ${
+                  className={`transition-all duration-200 font-label text-xs sm:text-sm px-3.5 py-1.5 rounded-full cursor-pointer ${
                     isActive
                       ? "bg-primary-container text-on-primary font-bold shadow-sm"
                       : "text-on-surface-variant hover:text-primary hover:bg-white/60 font-medium"
@@ -142,7 +143,8 @@ export function Navbar() {
           <div className="flex items-center gap-2.5 sm:gap-3">
             <Link
               href="#reservasi"
-              className="hidden sm:inline-flex items-center justify-center bg-accent-amber-deep hover:bg-tertiary-container text-white font-label text-xs sm:text-sm font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 ease-industrial hover:scale-[1.02] shadow-[0_4px_12px_rgba(249,150,50,0.35)] group"
+              onClick={(e) => smoothScrollTo("reservasi", e)}
+              className="hidden sm:inline-flex items-center justify-center bg-accent-amber-deep hover:bg-tertiary-container text-white font-label text-xs sm:text-sm font-bold px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all duration-200 ease-industrial hover:scale-[1.02] shadow-[0_4px_12px_rgba(249,150,50,0.35)] group cursor-pointer"
             >
               <span>Reservasi Sekarang</span>
               <ArrowRight className="w-4 h-4 ml-1.5 inline-block arrow-nudge shrink-0" />
@@ -199,8 +201,9 @@ export function Navbar() {
                         <div className="relative w-7 h-7">
                           <Image
                             src="/images/logo-bengkel-bunul.png"
-                            alt="Logo Bengkel Bunul"
+                            alt="Logo Bengkel Mobil Bunul"
                             fill
+                            sizes="28px"
                             className="object-contain"
                           />
                         </div>

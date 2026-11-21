@@ -1,11 +1,20 @@
 [
   {
+    "id": "berkala",
+    "title": "Perawatan Servis Berkala",
+    "badge": "PERIODIC MAINTENANCE",
+    "icon": "ClipboardCheck",
+    "category": "Perawatan Berkala",
+    "image": "/images/services/berkala.webp",
+    "description": "Paket servis berkala kelipatan 10.000 hingga 50.000 KM. Penggantian oli mesin OEM, filter oli, filter udara, filter kabin, serta inspeksi menyeluruh 40 titik kendaraan."
+  },
+  {
     "id": "kelistrikan",
     "title": "Servis Kelistrikan & Aki",
     "badge": "ELECTRICAL & ECU",
     "icon": "BatteryCharging",
     "category": "Kelistrikan",
-    "image": "https://lh3.googleusercontent.com/aida/ALJJyrA3GJ0zVs6pl2WSmJjFsG0BUBG9mRYinrPUKacQiBHkLTwQrwy3nLeZJnbtKMRPnDlE-vIUQ2DFMv-wF2f2qzHWA4223cMM5x2KPrZIduKwyLoktXHyDO_-JkCP1LWlytalRzV0hqPcMNoJf0enIQYZcrru4UoQjgnJDPW5zFsSKhCzheexKQku9ClTP5Hy0xvfsbQPRWiYyVFcdbU4aTnVSom66TWq0NY89BIYDlSB",
+    "image": "/images/services/kelistrikan.webp",
     "description": "Diagnostik kelistrikan OBD-2 mendalam, perbaikan dinamo alternator, motor starter, aki, sensor mesin, serta perapian sistem wiring harness."
   },
   {
@@ -14,7 +23,7 @@
     "badge": "OEM BRAKE SYSTEM",
     "icon": "Disc",
     "category": "Sistem Rem",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAnCV-heNhgSA2bAaOtELsBcXSkSoSOG_VwyLXPC_lCqPeK8pZ-fVXv2WPcxV9YeRFJ9Cfaec0Tk5g8aMJithcKUl6P2wzXjx-l_Js4QIhMObckgM7b_XRvcGnIVkkZWxILDrcJnNK-XmB4YDs0jvmy4oPrlX2EI5qrem-3s-uhCrmOjeF-Ro2dYTpua6D9QcwuLiBZpAk5LPaUAyoU2iaWO_k3nqToDwuU69hHdPme",
+    "image": "/images/services/rem.webp",
     "description": "Penggantian kampas rem OEM, bubut cakram (disc brake rotor), kuras minyak rem bertekanan, servis master serta booster rem bergaransi resmi."
   },
   {
@@ -23,7 +32,7 @@
     "badge": "TUNE UP & OVERHAUL",
     "icon": "Wrench",
     "category": "Servis Mesin",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCv0qFnxCD9ha-lXHPGokQkS2orqWKmh74p1t7kbbX776pWJNfnPPn3s47G6xFUEk_xmd81GQ7OOdPU-V6Xy2MRSzeJbQqL_znUO4cyK-C8wq-k_WBgI2xdq_Iu9kn2blWGnjOAQbFg1t-zowmcaMxkywFe-2F8b-aT7kkYmSwXMfaEEmcPsOL9rbsfjxOeJ4GPfGFTN0hLT2RdAc3t6zaW7TJZ0snLdYTYSYTNOiEy",
+    "image": "/images/services/mesin.webp",
     "description": "Pembersihan ruang bakar carbon clean presisi, kalibrasi sistem injeksi & ECU, servis klep, penggantian busi iridium, serta tune-up optimal."
   },
   {
@@ -32,7 +41,7 @@
     "badge": "CLIMATE SYSTEM",
     "icon": "Wind",
     "category": "AC Mobil",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBwLqng_IvuWQdMeM_ixHvHn6U7MIKVw1r0rwL7oHS-sD5E_7ZQ14mfgYIu0j2l96nh7qsaLha2d8OEnk7N-FlPRJg1xRgaynyOr5RZvKt9710vneMdhqaN_6MSHr86qQXstuQqwerRM_-Zw1n9HROFZsrxcOfVYf5sNSvi5bwy7XKD3v-OI_b4cnL4cQyfrfTAUMnEnRr6H00o0bAQ0UGRbBVyRw50t6m2Xy56X7Z_",
+    "image": "/images/services/ac.webp",
     "description": "Flushing oli kompresor digital tanpa bongkar dashboard, pembersihan evaporator ultrasonik, uji kebocoran nitrogen, dan pengisian freon murni R134a hingga suhu sejuk 4 derajat Celsius."
   },
   {
@@ -41,7 +50,7 @@
     "badge": "SUSPENSION & ALIGNMENT",
     "icon": "Crosshair",
     "category": "Kaki-kaki",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCe4ENqhx-sSZHcHts_0hyY23CiqmWQolBeFlgS-B7p8AWPzxqSp2seR0cpxUlDGC7LYm1J3bFZil0sDLRnsUlEm3YqhB62x3e7REbhqpumg5K1hhb1LPZBzVVR-_ntZ1MkydvaTltcqGBrO6YPZWgB2McNkq1hlH2CpqEOTbR79thEmQongJqEStSS71ZK-8QDkweI6cgRKF71huhtsX_5tofi6xo8o_BmibZTsElJ",
+    "image": "/images/services/kaki-kaki.webp",
     "description": "Spooring 3D laser kamera presisi, balancing roda digital, peremajaan shockbreaker, tie rod, rack end, ball joint, dan penggantian bushing arm untuk stabilitas kemudi optimal."
   },
   {
@@ -50,7 +59,7 @@
     "badge": "TRANSMISSION CARE",
     "icon": "Cog",
     "category": "Transmisi",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBEIfSBxXydAZZ1OwR_UZSoPHrg8-39offNoMswjjHwwUaH7oGZqpP27I1b6t4AnlsjJyPm9RfxyZHH-ACqxvWNQVsM4WjXQcyZJYPomNe95Lh7Vc1iuCjIBPKqL_hWSN1JuclMDyh9JOYRY1fLyTtIAQzRKR8ZlMKg2707WHY037lTWSxQ8WzEgUkSfJ6hI1EfC8ZSAm3ahz3e7AX1-31vECpT5TDnFGBo-8A4Xdk1",
+    "image": "/images/services/transmisi.webp",
     "description": "Perbaikan transmisi matik AT, CVT, dan manual. Flushing oli ATF presisi dengan mesin otomatis, kalibrasi solenoid valve, penggantian kampas kopling, dan overhaul transmisi."
   },
   {
@@ -59,17 +68,8 @@
     "badge": "COOLING SYSTEM",
     "icon": "Thermometer",
     "category": "Sistem Pendingin",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCv0qFnxCD9ha-lXHPGokQkS2orqWKmh74p1t7kbbX776pWJNfnPPn3s47G6xFUEk_xmd81GQ7OOdPU-V6Xy2MRSzeJbQqL_znUO4cyK-C8wq-k_WBgI2xdq_Iu9kn2blWGnjOAQbFg1t-zowmcaMxkywFe-2F8b-aT7kkYmSwXMfaEEmcPsOL9rbsfjxOeJ4GPfGFTN0hLT2RdAc3t6zaW7TJZ0snLdYTYSYTNOiEy",
+    "image": "/images/services/pendingin.webp",
     "description": "Kuras dan flushing radiator dengan coolant bertaraf OEM, servis water pump, pemeriksaan termostat otomatis, dan perbaikan kebocoran selang radiator mencegah risiko overheat."
-  },
-  {
-    "id": "berkala",
-    "title": "Perawatan Servis Berkala",
-    "badge": "PERIODIC MAINTENANCE",
-    "icon": "ClipboardCheck",
-    "category": "Perawatan Berkala",
-    "image": "https://lh3.googleusercontent.com/aida/ALJJyrA3GJ0zVs6pl2WSmJjFsG0BUBG9mRYinrPUKacQiBHkLTwQrwy3nLeZJnbtKMRPnDlE-vIUQ2DFMv-wF2f2qzHWA4223cMM5x2KPrZIduKwyLoktXHyDO_-JkCP1LWlytalRzV0hqPcMNoJf0enIQYZcrru4UoQjgnJDPW5zFsSKhCzheexKQku9ClTP5Hy0xvfsbQPRWiYyVFcdbU4aTnVSom66TWq0NY89BIYDlSB",
-    "description": "Paket servis berkala kelipatan 10.000 hingga 50.000 KM. Penggantian oli mesin OEM, filter oli, filter udara, filter kabin, serta inspeksi menyeluruh 40 titik kendaraan."
   },
   {
     "id": "body-repair",
@@ -77,7 +77,7 @@
     "badge": "BODYWORK & PAINT",
     "icon": "Hammer",
     "category": "Body Repair",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAnCV-heNhgSA2bAaOtELsBcXSkSoSOG_VwyLXPC_lCqPeK8pZ-fVXv2WPcxV9YeRFJ9Cfaec0Tk5g8aMJithcKUl6P2wzXjx-l_Js4QIhMObckgM7b_XRvcGnIVkkZWxILDrcJnNK-XmB4YDs0jvmy4oPrlX2EI5qrem-3s-uhCrmOjeF-Ro2dYTpua6D9QcwuLiBZpAk5LPaUAyoU2iaWO_k3nqToDwuU69hHdPme",
+    "image": "/images/services/body-repair.webp",
     "description": "Perbaikan panel bodi penyok tanpa dempul tebal (PDR), pengelasan bodi presisi, serta pengecatan panel oven bergaransi dengan pencocokan warna akurat sesuai kode cat pabrikan."
   }
 ]

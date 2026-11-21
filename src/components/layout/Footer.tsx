@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -8,6 +10,7 @@ import {
   Wrench,
   Navigation,
 } from "lucide-react";
+import { smoothScrollTo } from "@/lib/scroll";
 
 export function Footer() {
   return (
@@ -25,6 +28,7 @@ export function Footer() {
                   src="/images/logo-bengkel-bunul.png"
                   alt="Logo Bengkel Mobil Bunul"
                   fill
+                  sizes="32px"
                   className="object-contain p-0.5"
                 />
               </div>
@@ -66,7 +70,8 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-surface-container-high hover:text-white transition-colors flex items-center gap-1.5 group"
+                    onClick={(e) => smoothScrollTo(link.href, e)}
+                    className="text-surface-container-high hover:text-white transition-colors flex items-center gap-1.5 group cursor-pointer"
                   >
                     <ChevronRight className="w-3.5 h-3.5 text-outline group-hover:translate-x-0.5 transition-transform" />
                     <span>{link.label}</span>

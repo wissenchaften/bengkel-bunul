@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import {
   ArrowLeft,
@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import servicesData from "@/data/services.json";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { smoothScrollTo } from "@/lib/scroll";
 
 function getServiceIcon(iconName: string) {
   switch (iconName) {
@@ -46,6 +47,28 @@ function getServiceIcon(iconName: string) {
   }
 }
 
+function ServiceCardImage({ src, alt }: { src: string; alt: string }) {
+  const [imgSrc, setImgSrc] = useState(src);
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <Image
+      src={imgSrc}
+      alt={alt}
+      fill
+      unoptimized
+      sizes="(max-width: 640px) 85vw, (max-width: 1024px) 50vw, 33vw"
+      className={`object-cover group-hover:scale-105 transition-transform duration-300 ease-industrial ${
+        hasError ? "p-6 object-contain bg-surface-container-high opacity-80" : ""
+      }`}
+      onError={() => {
+        setHasError(true);
+        setImgSrc("/images/logo-bengkel-bunul.png");
+      }}
+    />
+  );
+}
+
 export function ServicesSection() {
   const carouselRef = useRef<HTMLDivElement>(null);
 
@@ -64,10 +87,7 @@ export function ServicesSection() {
     });
     window.dispatchEvent(event);
 
-    const formElem = document.getElementById("reservasi");
-    if (formElem) {
-      formElem.scrollIntoView({ behavior: "smooth" });
-    }
+    smoothScrollTo("reservasi");
   };
 
   return (
@@ -101,7 +121,7 @@ export function ServicesSection() {
           {/* Horizontal Slides Track */}
           <div
             ref={carouselRef}
-            className="w-full flex gap-6 overflow-x-auto scroll-smooth py-6 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            className="w-full flex gap-6 overflow-x-auto overflow-y-hidden py-6 snap-x snap-mandatory md:snap-none overscroll-x-contain [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
             {servicesData.map((service) => (
               <div
@@ -112,12 +132,7 @@ export function ServicesSection() {
                 <div className="relative w-full h-48 sm:h-52">
                   {/* Inner container with overflow-hidden for image zoom */}
                   <div className="relative w-full h-full overflow-hidden rounded-t-xl bg-surface-container">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300 ease-industrial"
-                    />
+                    <ServiceCardImage src={service.image} alt={service.title} />
                     {/* 3px Solid Line Accent */}
                     <div className="absolute bottom-0 inset-x-0 h-1 bg-[#1d1583] z-10" />
                   </div>

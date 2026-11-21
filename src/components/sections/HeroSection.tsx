@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -12,8 +13,12 @@ import {
   Star,
 } from "lucide-react";
 import { motionTokens } from "@/lib/motion";
+import { smoothScrollTo } from "@/lib/scroll";
 
 export function HeroSection() {
+  const [heroImgSrc, setHeroImgSrc] = useState("/images/hero/hero-workshop.webp");
+  const [hasError, setHasError] = useState(false);
+
   return (
     <section
       id="hero"
@@ -75,7 +80,8 @@ export function HeroSection() {
             >
               <Link
                 href="#reservasi"
-                className="inline-flex items-center justify-center gap-2 bg-primary-container hover:bg-primary text-white font-label text-sm font-bold px-6 py-3.5 rounded-xl transition-all duration-200 ease-industrial hover:scale-[1.01] shadow-md group"
+                onClick={(e) => smoothScrollTo("reservasi", e)}
+                className="inline-flex items-center justify-center gap-2 bg-primary-container hover:bg-primary text-white font-label text-sm font-bold px-6 py-3.5 rounded-xl transition-all duration-200 ease-industrial hover:scale-[1.01] shadow-md group cursor-pointer"
               >
                 <span>Reservasi Jadwal Servis</span>
                 <ArrowRight className="w-4 h-4 arrow-nudge shrink-0" />
@@ -83,7 +89,8 @@ export function HeroSection() {
 
               <Link
                 href="#layanan"
-                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-surface-container text-primary font-label text-sm font-bold px-5 py-3.5 rounded-xl border border-border-medium hover:border-primary transition-all duration-200 ease-industrial group"
+                onClick={(e) => smoothScrollTo("layanan", e)}
+                className="inline-flex items-center justify-center gap-2 bg-white hover:bg-surface-container text-primary font-label text-sm font-bold px-5 py-3.5 rounded-xl border border-border-medium hover:border-primary transition-all duration-200 ease-industrial group cursor-pointer"
               >
                 <span>Lihat Katalog Layanan</span>
                 <ArrowRight className="w-4 h-4 arrow-nudge shrink-0" />
@@ -135,11 +142,19 @@ export function HeroSection() {
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden border border-border-light shadow-xl bg-surface-container group">
               <Image
-                src="https://lh3.googleusercontent.com/aida/ALJJyrA3GJ0zVs6pl2WSmJjFsG0BUBG9mRYinrPUKacQiBHkLTwQrwy3nLeZJnbtKMRPnDlE-vIUQ2DFMv-wF2f2qzHWA4223cMM5x2KPrZIduKwyLoktXHyDO_-JkCP1LWlytalRzV0hqPcMNoJf0enIQYZcrru4UoQjgnJDPW5zFsSKhCzheexKQku9ClTP5Hy0xvfsbQPRWiYyVFcdbU4aTnVSom66TWq0NY89BIYDlSB"
+                src={heroImgSrc}
                 alt="Mekanik profesional sedang memeriksa mesin mobil di workshop modern Bengkel Mobil Bunul"
                 fill
-                className="object-cover object-center transition-transform duration-500 ease-industrial group-hover:scale-105"
+                unoptimized
+                sizes="(max-width: 1024px) 100vw, 45vw"
+                className={`object-cover object-center transition-transform duration-500 ease-industrial group-hover:scale-105 ${
+                  hasError ? "p-8 object-contain bg-surface-container-high opacity-85" : ""
+                }`}
                 priority
+                onError={() => {
+                  setHasError(true);
+                  setHeroImgSrc("/images/logo-bengkel-bunul.png");
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent pointer-events-none" />
 

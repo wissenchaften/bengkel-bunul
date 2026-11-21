@@ -83,7 +83,7 @@ export function TestimonialsSection() {
           onMouseLeave={() => setIsPaused(false)}
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
-          className="w-full flex gap-5 sm:gap-6 overflow-x-auto scroll-smooth py-3 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          className="w-full flex gap-5 sm:gap-6 overflow-x-auto overflow-y-hidden py-3 snap-x snap-mandatory md:snap-none overscroll-x-contain [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {testimonialsData.map((testi, idx) => (
             <ScrollReveal

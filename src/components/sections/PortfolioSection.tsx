@@ -91,7 +91,7 @@ export function PortfolioSection() {
         {/* 9:16 Video Cards Track */}
         <div
           ref={trackRef}
-          className="w-full flex gap-5 sm:gap-6 overflow-x-auto scroll-smooth pb-4 pt-1 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+          className="w-full flex gap-5 sm:gap-6 overflow-x-auto overflow-y-hidden pb-4 pt-1 snap-x snap-mandatory md:snap-none overscroll-x-contain [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {videosData.map((video, idx) => {
             const isLoaded = loadedVideos[video.id];
@@ -111,6 +111,7 @@ export function PortfolioSection() {
                       src={video.thumbnail}
                       alt={video.title}
                       fill
+                      sizes="(max-width: 640px) 78vw, 280px"
                       className="object-cover group-hover:scale-105 transition-transform duration-300 ease-industrial"
                     />
                   ) : (

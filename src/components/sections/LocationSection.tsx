@@ -22,7 +22,10 @@ export function LocationSection() {
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.3533463990664!2d112.6372074!3d-7.9623831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62908f51ec129%3A0x6b4fb24e6ff6eb18!2sJl.%20Warinoi%20III%2C%20Bunulrejo%2C%20Kec.%20Blimbing%2C%20Kota%20Malang%2C%20Jawa%20Timur%2065126!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid";
 
   return (
-    <section id="lokasi" className="w-full py-16 sm:py-24 bg-[#1E1B4B] text-white">
+    <section
+      id="lokasi"
+      className="w-full py-16 sm:py-24 bg-[#1E1B4B] text-white"
+    >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column: Workshop Information & Facilities */}
@@ -37,7 +40,9 @@ export function LocationSection() {
             </h2>
 
             <p className="font-body text-sm sm:text-base text-surface-container-high leading-relaxed">
-              Lokasi strategis di pusat kota dengan akses mudah untuk segala tipe kendaraan roda empat. Ruang kerja bengkel luas dengan 6 service bay dan peralatan angkat hidrolik berstandar keselamatan tinggi.
+              Lokasi strategis di pusat kota dengan akses mudah untuk segala
+              tipe kendaraan roda empat. Ruang kerja bengkel luas dan peralatan
+              angkat hidrolik berstandar keselamatan tinggi.
             </p>
 
             {/* Contact Specs Card */}
@@ -49,7 +54,8 @@ export function LocationSection() {
                     Alamat Bengkel
                   </div>
                   <p className="font-body text-xs sm:text-sm text-surface-container-high mt-0.5 leading-relaxed">
-                    Jl. Warinoi III, Bunulrejo, Kec. Blimbing, Kota Malang, Jawa Timur 65126
+                    Jl. Warinoi III, Bunulrejo, Kec. Blimbing, Kota Malang, Jawa
+                    Timur 65126
                   </p>
                 </div>
               </div>
@@ -87,15 +93,21 @@ export function LocationSection() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 <div className="bg-[#161338] p-3 rounded-lg border border-border-dark flex items-center gap-2">
                   <AirVent className="w-4 h-4 text-accent-amber-deep shrink-0" />
-                  <span className="font-body text-xs text-white">Ruang Ber-AC</span>
+                  <span className="font-body text-xs text-white">
+                    Ruang Ber-AC
+                  </span>
                 </div>
                 <div className="bg-[#161338] p-3 rounded-lg border border-border-dark flex items-center gap-2">
                   <Wifi className="w-4 h-4 text-accent-amber-deep shrink-0" />
-                  <span className="font-body text-xs text-white">Free WiFi</span>
+                  <span className="font-body text-xs text-white">
+                    Free WiFi
+                  </span>
                 </div>
                 <div className="bg-[#161338] p-3 rounded-lg border border-border-dark flex items-center gap-2">
                   <Coffee className="w-4 h-4 text-accent-amber-deep shrink-0" />
-                  <span className="font-body text-xs text-white">Kopi & Teh</span>
+                  <span className="font-body text-xs text-white">
+                    Kopi & Teh
+                  </span>
                 </div>
                 <div className="bg-[#161338] p-3 rounded-lg border border-border-dark flex items-center gap-2">
                   <Building className="w-4 h-4 text-accent-amber-deep shrink-0" />
@@ -133,19 +145,31 @@ export function LocationSection() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className={`w-full h-full transition-opacity duration-200 ${
-                    mapInteractive ? "pointer-events-auto" : "pointer-events-none md:pointer-events-auto"
+                    mapInteractive ? "pointer-events-auto" : "pointer-events-none"
                   }`}
                 />
 
-                {/* Mobile Gesture Overlay Guard */}
-                <div className="md:hidden absolute top-3 right-3 z-20">
+                {/* Gesture Guard Overlay (Click to activate) */}
+                {!mapInteractive && (
+                  <button
+                    type="button"
+                    onClick={() => setMapInteractive(true)}
+                    className="absolute inset-0 z-10 w-full h-full cursor-pointer bg-transparent"
+                    aria-label="Klik untuk mengaktifkan interaksi peta"
+                  />
+                )}
+
+                {/* Gesture Overlay Guard Button (Desktop & Mobile) */}
+                <div className="absolute top-3 right-3 z-20">
                   <button
                     type="button"
                     onClick={() => setMapInteractive(!mapInteractive)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/90 text-white font-label text-xs font-semibold shadow-lg backdrop-blur-sm border border-white/20 active:scale-95 transition-all"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/90 hover:bg-primary text-white font-label text-xs font-semibold shadow-lg backdrop-blur-sm border border-white/20 active:scale-95 transition-all cursor-pointer"
                   >
                     <Compass className="w-3.5 h-3.5 text-accent-amber-deep" />
-                    <span>{mapInteractive ? "Kunci Geser" : "Aktifkan Peta"}</span>
+                    <span>
+                      {mapInteractive ? "Kunci Geser / Zoom" : "Aktifkan Interaksi Peta"}
+                    </span>
                   </button>
                 </div>
 
