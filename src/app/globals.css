@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0a005d;
+  --color-primary-container: #1d1583;
+  --color-on-primary: #ffffff;
+  --color-primary-fixed: #e2dfff;
+  --color-primary-fixed-dim: #c2c1ff;
+  --color-on-primary-container: #8887f1;
+
+  --color-secondary: #1e1b4b;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #c7c3fe;
+  --color-secondary-fixed: #e3dfff;
+  --color-on-secondary-fixed: #181445;
+
+  --color-tertiary: #452300;
+  --color-tertiary-container: #653500;
+  --color-accent-amber-deep: #f99632;
+  --color-tertiary-accent: #fd9935;
+  --color-tertiary-fixed: #ffdcc2;
+  --color-tertiary-fixed-dim: #ffb77a;
+  --color-on-tertiary-fixed: #2e1500;
+  --color-on-tertiary-container: #d87c15;
+
+  --color-whatsapp-green: #25d366;
+  --color-status-success: #16a34a;
+  --color-status-error: #ba1a1a;
+  --color-error: #ba1a1a;
+
+  --color-surface: #f8f9fc;
+  --color-background: #f8f9fc;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f2f4f6;
+  --color-surface-container: #eceef0;
+  --color-surface-container-high: #e7e8eb;
+  --color-surface-container-highest: #e1e2e5;
+  --color-on-surface: #191c1e;
+  --color-on-surface-variant: #464552;
+  --color-outline: #777584;
+  --color-outline-variant: #c7c5d4;
+
+  --color-border-light: #e2e8f0;
+  --color-border-medium: #cbd5e1;
+  --color-border-dark: #312e81;
+
+  --font-headline: var(--font-plus-jakarta), sans-serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-label: var(--font-public-sans), sans-serif;
+}
+
+:root {
+  --ease-industrial: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Industrial Easing & Hover Utilities */
+.ease-industrial {
+  transition-timing-function: var(--ease-industrial);
+}
+
+.hover-industrial-card {
+  transition: transform 0.28s var(--ease-industrial), box-shadow 0.28s var(--ease-industrial), border-color 0.28s var(--ease-industrial);
+}
+
+.hover-industrial-card:hover {
+  transform: translateY(-3px);
+}
+
+.arrow-nudge {
+  transition: transform 0.25s var(--ease-industrial);
+}
+
+.group:hover .arrow-nudge {
+  transform: translateX(4px);
+}
+
+/* Status Indicator Pulse Animation */
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+    box-shadow: 0 0 0 6px rgba(22, 163, 74, 0);
+  }
+}
+
+.animate-status-pulse {
+  animation: status-pulse 2.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Shimmer Skeleton Loader for Lazy-Loaded Components */
+@keyframes shimmer-slide {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.animate-shimmer::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0.3) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmer-slide 2s infinite;
+  content: "";
+}
+
+/* Accessible reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
