@@ -11,7 +11,10 @@ import {
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[#1E1B4B] text-white pt-12 sm:pt-16 pb-8 border-t border-border-dark" role="contentinfo">
+    <footer
+      className="w-full bg-[#1E1B4B] text-white pt-12 sm:pt-16 pb-8 border-t border-border-dark"
+      role="contentinfo"
+    >
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-12">
           {/* Col 1: Brand Info */}
@@ -31,7 +34,9 @@ export function Footer() {
             </div>
 
             <p className="font-body text-xs sm:text-sm text-surface-container-high leading-relaxed">
-              Pusat reparasi, diagnostik mesin komputerisasi, dan perawatan performa kendaraan bergaransi dengan integritas mekanik bersertifikat terpercaya sejak 2008.
+              Pusat reparasi, diagnostik mesin komputerisasi, dan perawatan
+              performa kendaraan bergaransi dengan integritas mekanik
+              bersertifikat terpercaya sejak 2016.
             </p>
 
             <div className="pt-2">

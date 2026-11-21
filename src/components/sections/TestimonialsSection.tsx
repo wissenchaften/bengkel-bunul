@@ -18,10 +18,11 @@ export function TestimonialsSection() {
       if (!track) return;
 
       const maxScroll = track.scrollWidth - track.clientWidth;
+      const step = track.clientWidth * 0.8;
       if (track.scrollLeft >= maxScroll - 10) {
         track.scrollTo({ left: 0, behavior: "smooth" });
       } else {
-        track.scrollBy({ left: 320, behavior: "smooth" });
+        track.scrollBy({ left: step, behavior: "smooth" });
       }
     }, 5000);
 
@@ -30,7 +31,7 @@ export function TestimonialsSection() {
 
   const handleManualScroll = (direction: "left" | "right") => {
     if (!trackRef.current) return;
-    const amount = 320;
+    const amount = trackRef.current.clientWidth * 0.8;
     trackRef.current.scrollBy({
       left: direction === "left" ? -amount : amount,
       behavior: "smooth",
@@ -82,13 +83,13 @@ export function TestimonialsSection() {
           onMouseLeave={() => setIsPaused(false)}
           onTouchStart={() => setIsPaused(true)}
           onTouchEnd={() => setIsPaused(false)}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-x-auto scroll-smooth py-2 snap-x snap-mandatory"
+          className="w-full flex gap-5 sm:gap-6 overflow-x-auto scroll-smooth py-3 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {testimonialsData.map((testi, idx) => (
             <ScrollReveal
               key={testi.id}
               delay={idx * 0.08}
-              className="snap-start bg-white p-6 rounded-xl border border-border-light shadow-[0px_4px_12px_rgba(30,27,75,0.04)] flex flex-col justify-between hover-industrial-card min-w-[280px]"
+              className="w-[85vw] sm:w-[320px] lg:w-[calc((100%-72px)/4)] shrink-0 snap-start bg-white p-6 rounded-xl border border-border-light shadow-[0px_4px_12px_rgba(30,27,75,0.04)] flex flex-col justify-between hover-industrial-card"
             >
               <div>
                 {/* Star Ratings */}

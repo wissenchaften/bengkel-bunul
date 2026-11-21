@@ -36,7 +36,7 @@ export function PortfolioSection() {
 
   const handleScrollTrack = (direction: "left" | "right") => {
     if (!trackRef.current) return;
-    const amount = 300;
+    const amount = trackRef.current.clientWidth * 0.8;
     trackRef.current.scrollBy({
       left: direction === "left" ? -amount : amount,
       behavior: "smooth",
@@ -91,7 +91,7 @@ export function PortfolioSection() {
         {/* 9:16 Video Cards Track */}
         <div
           ref={trackRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 overflow-x-auto scroll-smooth pb-4 pt-1 snap-x snap-mandatory"
+          className="w-full flex gap-5 sm:gap-6 overflow-x-auto scroll-smooth pb-4 pt-1 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
           {videosData.map((video, idx) => {
             const isLoaded = loadedVideos[video.id];
@@ -100,7 +100,7 @@ export function PortfolioSection() {
               <ScrollReveal
                 key={video.id}
                 delay={idx * 0.08}
-                className="snap-start video-card-target group relative rounded-xl overflow-hidden bg-primary-container shadow-md border border-border-light flex flex-col hover-industrial-card"
+                className="w-[78vw] sm:w-[280px] lg:w-[calc((100%-72px)/4)] shrink-0 snap-start video-card-target group relative rounded-xl overflow-hidden bg-primary-container shadow-md border border-border-light flex flex-col hover-industrial-card"
               >
                 <div
                   data-video-id={video.id}
