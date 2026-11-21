@@ -5,6 +5,7 @@ import Image from "next/image";
 import {
   ArrowLeft,
   ArrowRight,
+  BatteryCharging,
   Zap,
   Disc,
   Wrench,
@@ -20,6 +21,8 @@ import { ScrollReveal } from "@/components/motion/ScrollReveal";
 
 function getServiceIcon(iconName: string) {
   switch (iconName) {
+    case "BatteryCharging":
+      return <BatteryCharging className="w-6 h-6 text-white" />;
     case "Zap":
       return <Zap className="w-6 h-6 text-white" />;
     case "Disc":
@@ -48,7 +51,6 @@ export function ServicesSection() {
 
   const handleSlide = (direction: "prev" | "next") => {
     if (!carouselRef.current) return;
-    // Scroll by width of one card + gap or viewport width
     const scrollAmount = carouselRef.current.clientWidth * 0.85;
     carouselRef.current.scrollBy({
       left: direction === "next" ? scrollAmount : -scrollAmount,
@@ -99,34 +101,37 @@ export function ServicesSection() {
           {/* Horizontal Slides Track */}
           <div
             ref={carouselRef}
-            className="w-full flex gap-6 overflow-x-auto scroll-smooth py-4 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            className="w-full flex gap-6 overflow-x-auto scroll-smooth py-6 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
           >
             {servicesData.map((service) => (
               <div
                 key={service.id}
                 className="w-[85vw] sm:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start bg-white rounded-xl shadow-[0px_10px_24px_-4px_rgba(30,27,75,0.08)] border border-border-light overflow-hidden flex flex-col group hover-industrial-card"
               >
-                {/* Thumbnail Image Container */}
-                <div className="relative w-full h-48 sm:h-52 overflow-hidden bg-surface-container">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300 ease-industrial"
-                  />
-                  {/* 3px Solid Line Accent */}
-                  <div className="absolute bottom-0 inset-x-0 h-1 bg-[#1d1583]" />
+                {/* Thumbnail Image & Floating Badge Area */}
+                <div className="relative w-full h-48 sm:h-52">
+                  {/* Inner container with overflow-hidden for image zoom */}
+                  <div className="relative w-full h-full overflow-hidden rounded-t-xl bg-surface-container">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300 ease-industrial"
+                    />
+                    {/* 3px Solid Line Accent */}
+                    <div className="absolute bottom-0 inset-x-0 h-1 bg-[#1d1583] z-10" />
+                  </div>
 
-                  {/* Centered Floating Badge */}
-                  <div className="absolute -bottom-6 inset-x-0 flex justify-center z-20">
-                    <div className="w-14 h-14 bg-[#0a005d] rounded-lg shadow-md border-2 border-white flex items-center justify-center text-white">
+                  {/* Centered Floating Badge positioned on top of the thumbnail seam */}
+                  <div className="absolute -bottom-7 inset-x-0 flex justify-center z-30 pointer-events-none">
+                    <div className="w-14 h-14 bg-[#0a005d] rounded-xl shadow-lg border-2 border-white flex items-center justify-center text-white">
                       {getServiceIcon(service.icon)}
                     </div>
                   </div>
                 </div>
 
                 {/* Card Body */}
-                <div className="pt-10 pb-6 px-6 flex-1 flex flex-col items-center text-center">
+                <div className="pt-11 pb-6 px-6 flex-1 flex flex-col items-center text-center">
                   <h3 className="font-headline text-xl sm:text-[22px] font-bold text-primary mb-2">
                     {service.title}
                   </h3>
