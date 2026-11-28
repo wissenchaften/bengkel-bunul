@@ -1,51 +1,51 @@
 # Laporan Validasi UI Visual Desktop & Mobile — Bengkel Mobil Bunul
 
-> **Status Audit:** SELESAI (Audited per 21 November 2026)  
-> **Peran:** UI Visual QA Validator  
+> **Status Audit:** SELESAI & LULUS VERIFIKASI (Re-audited 25 November 2026)  
+> **Target Build:** Fresh Production Build (`next start -p 3005`)  
 > **Metodologi:** Zero-Trust Visual Verification, Headless Chrome DevTools Protocol (CDP), Pixel & Layout Analysis, WCAG 2.1/2.2 Compliance Check.
 
 ---
 
 ## Ringkasan Eksekutif (Executive Summary)
 
-*From the visual evidence, I observe* bahwa antarmuka web Bengkel Mobil Bunul telah mengimplementasikan struktur komponen Next.js 16 + Tailwind CSS 4 dengan tata letak visual industrial yang kuat, hierarki tipografi *Plus Jakarta Sans* dan *Public Sans*, serta palet warna Material You (`#0a005d` Deep Indigo, `#1e1b4b` Chassis Midnight, `#f99632` Amber Accent).
+*From the visual evidence, I observe* bahwa seluruh seksi website Bengkel Mobil Bunul pada viewport **Desktop (`1440×900`)** maupun **Mobile (`390×844`)** kini **TERCAPAI PENUH (ACHIEVED)**.
 
-Namun, berdasarkan prinsip **Zero-Trust Visual Evidence**, target visual **BELUM SEPENUHNYA TERCAPAI (PARTIALLY ACHIEVED)** karena ditemukan beberapa **defek visual kritis** pada aset gambar, mekanisme rendering lazy-load video portofolio, serta kepatuhan aksesibilitas target sentuh (touch target) pada perangkat bergerak.
+Seluruh temuan dari audit sebelumnya—termasuk broken images, bug `IntersectionObserver` pada Portofolio, touch target di bawah 44px pada mobile, kontras teks redup pada Footer gelap, lompatan level heading (`h2 -> h4`), serta tombol panah layanan yang menimpa kartu di layar ponsel—telah diperbaiki dan diverifikasi ulang secara visual maupun melalui metrik DOM otomatis.
+
+### Metrik Kunci Terverifikasi (`audit-results.json`)
+- **Broken Images:** `0`
+- **Horizontal Page Overflow (Mobile `390×844`):** `false` (`scrollWidth: 390`, `clientWidth: 390`, `unexpectedOverflowCount: 0`)
+- **Form Labels (WCAG 1.3.1 / 4.1.2):** `9/9` input terlabeli (`hasLabel: true`)
+- **Touch Target Utama `< 44×44px`:** `0` (`smallPrimaryTouchTargets: []`)
+- **Pagination Dots `< 24×24px`:** `0` (`smallPaginationDots: []`)
+- **Heading Hierarchy Skips:** `0` (`headingSkips: []`)
+- **Interaksi Utama:**
+  - Auto-fill layanan (`Perawatan Berkala`) → `#reservasi`: ✅ Berhasil
+  - Portofolio Single Active Player (klik Play, pindah video, tutup player): ✅ Terverifikasi (`iframesAfterFirst: 1`, `iframesAfterSecond: 1`, `iframesAfterClose: 0`)
+  - Testimoni 7 ulasan Google Maps & pagination dots: ✅ Berhasil
+  - Proteksi gestur Google Maps mobile (*Aktifkan Interaksi Peta* → *Kunci Geser / Zoom*): ✅ Berhasil
 
 ---
 
 ## Matriks Hasil Evaluasi Komponen
 
-| Komponen / Seksi | Desktop (1440×900) | Mobile (390×844) | Status Verifikasi | Catatan Visual Utama |
+| Komponen / Seksi | Desktop (`1440×900`) | Mobile (`390×844`) | Status Verifikasi | Catatan Visual Utama |
 |---|---|---|---|---|
-| **Header & Navbar** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | Sticky glassmorphism aktif, navigasi desktop rapi, drawer mobile responsif dengan portal. |
-| **Hero Section** | ❌ Gagal | ❌ Gagal | **NOT ACHIEVED** | Foto utama workshop gagal dimuat (*broken image icon* akibat URL privat `/aida/`). |
-| **Stats Counter** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | 4 kartu metrik (10+ Tahun, 4.9/5.0, 100%, Garansi Tertulis) ter-render seimbang. |
-| **About Section** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | Aksen sudut arsitektural (*corner frame accents*), gambar mekanik balancing & laptop scanner tampil sempurna. |
-| **Services Section** | ⚠️ Parsial | ⚠️ Parsial | **PARTIALLY ACHIEVED** | Kartu 1 (*Kelistrikan*) dan Kartu 8 (*Berkala*) memiliki gambar rusak. Tombol touch target terlalu kecil (16px). |
-| **Portfolio Section** | ❌ Gagal | ❌ Gagal | **NOT ACHIEVED** | Ke-4 thumbnail video tidak muncul (blank gradient) karena *IntersectionObserver selector target bug*. |
-| **Testimonials** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | Carousel card dengan bintang rating, kutipan kustomer, dan inisial avatar berfungsi dengan baik. |
-| **Reservation Form** | ✅ Lolos | ⚠️ Parsial | **PARTIALLY ACHIEVED** | Form 8 field rapi di desktop; pada mobile radio button waktu memerlukan standardisasi WCAG name. |
-| **Location & Maps** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | Google Maps iframe render dengan proteksi gestur mobile (*Aktifkan Peta* button). |
-| **Footer** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | 4 kolom informasi, badge bengkel resmi, link navigasi, dan WhatsApp CTA terpasang presisi. |
+| **Header & Navbar** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | Sticky glassmorphism aktif, scroll spy mencakup `#reservasi`, logo link `≥ 44px`, drawer mobile portal responsif. |
+| **Hero & Stats Bar** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | Gambar workshop WebP tampil tajam, status buka/tutup WIB live aktif, tombol mobile 2-kolom sekunder + primer `≥ 44px`, stats bar `500+ Ulasan Google`. |
+| **About Section** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | Corner frame accents, 3 foto workshop lokal WebP, dan 3 kartu USP tampil presisi. |
+| **Services Section** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | 9 kartu layanan dengan foto WebP lokal, tombol *"KONSULTASI LAYANAN"* `≥ 44px`, panah slider disembunyikan di mobile (`hidden sm:flex`) agar tidak menimpa kartu. |
+| **Portfolio Section** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | 6 kartu seragam bergaya YouTube Shorts, lazy load `IntersectionObserver`, single active player dengan tombol tutup `44×44px`, heading `<h3>`. |
+| **Testimonials** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | 7 ulasan Google Maps nyata, badge sumber, tombol navigasi `44×44px`, 7 pagination dots `≥ 24×24px`, CTA Google Maps `≥ 44px`. |
+| **Reservation Form** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | 8 field (9 input) terlabeli penuh termasuk radio `aria-label`, auto-fill dari layanan berfungsi. |
+| **Location & Maps** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | Gesture protection aktif, tombol *"Aktifkan Interaksi Peta"* & *"Buka Rute"* `≥ 44px`, heading `<h3>` berurutan. |
+| **Footer** | ✅ Lolos | ✅ Lolos | **ACHIEVED** | Link navigasi & CTA WhatsApp `≥ 44px`, kontras teks `text-secondary-container` di atas `#1E1B4B` tajam terbaca, hierarki heading rapi. |
 
 ---
 
 ## Indeks Dokumen Audit
 
-1. **[Laporan Audit Desktop (1440×900)](file:///c:/Users/Wissenchaften/Desktop/Web%20Bengkel%20Bunul/docs/ui-visual-validator/desktop-audit.md)**: Analisis detail seluruh seksi desktop, pengukuran alignment, grid spacing, dan status visual.
-2. **[Laporan Audit Mobile (390×844)](file:///c:/Users/Wissenchaften/Desktop/Web%20Bengkel%20Bunul/docs/ui-visual-validator/mobile-audit.md)**: Analisis interaksi drawer mobile, touch targets, pembungkusan teks (*text wrap*), dan gesture protection.
-3. **[Log Defek & Panduan Remediasi](file:///c:/Users/Wissenchaften/Desktop/Web%20Bengkel%20Bunul/docs/ui-visual-validator/defect-remediation.md)**: Rincian bug visual, akar masalah kode (*root cause*), dan kode perbaikan (*drop-in fix*).
-
----
-
-## Tangkapan Layar Bukti Visual
-
-Semua tangkapan layar bukti audit tersimpan secara lokal di folder:
-`docs/ui-visual-validator/screenshots/`
-
-- **Full Page Desktop:** `desktop-fullpage.png` (1440×7500)
-- **Full Page Mobile:** `mobile-fullpage.png` (390×11000)
-- **Desktop Hero:** `desktop-01-hero.png`
-- **Mobile Drawer Open:** `mobile-02-drawer-open.png`
-- **Audit Data JSON:** `audit-results.json`
+1. **[Laporan Audit Desktop (1440×900)](file:///c:/Users/Wissenchaften/Desktop/Web%20Bengkel%20Bunul/docs/ui-visual-validator/desktop-audit.md)**
+2. **[Laporan Audit Mobile (390×844)](file:///c:/Users/Wissenchaften/Desktop/Web%20Bengkel%20Bunul/docs/ui-visual-validator/mobile-audit.md)**
+3. **[Log Defek & Status Remediasi](file:///c:/Users/Wissenchaften/Desktop/Web%20Bengkel%20Bunul/docs/ui-visual-validator/defect-remediation.md)**
+4. **[Audit Data JSON](file:///c:/Users/Wissenchaften/Desktop/Web%20Bengkel%20Bunul/docs/ui-visual-validator/screenshots/audit-results.json)**

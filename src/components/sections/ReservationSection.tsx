@@ -361,10 +361,11 @@ export function ReservationSection() {
                     <input
                       type="radio"
                       value="pagi"
+                      aria-label="Sesi Waktu Pagi (08:00 sampai 12:00 WIB)"
                       {...register("waktu")}
                       className="peer sr-only"
                     />
-                    <div className="px-3 py-2 text-center rounded-lg border border-border-medium bg-surface-container-lowest peer-checked:bg-primary-fixed peer-checked:border-primary-container peer-checked:text-primary font-label text-xs font-bold transition-all">
+                    <div className="min-h-[44px] flex items-center justify-center px-3 py-2 text-center rounded-lg border border-border-medium bg-surface-container-lowest peer-checked:bg-primary-fixed peer-checked:border-primary-container peer-checked:text-primary font-label text-xs font-bold transition-all">
                       Pagi (08:00 - 12:00)
                     </div>
                   </label>
@@ -372,10 +373,11 @@ export function ReservationSection() {
                     <input
                       type="radio"
                       value="siang"
+                      aria-label="Sesi Waktu Siang (12:00 sampai 16:00 WIB)"
                       {...register("waktu")}
                       className="peer sr-only"
                     />
-                    <div className="px-3 py-2 text-center rounded-lg border border-border-medium bg-surface-container-lowest peer-checked:bg-primary-fixed peer-checked:border-primary-container peer-checked:text-primary font-label text-xs font-bold transition-all">
+                    <div className="min-h-[44px] flex items-center justify-center px-3 py-2 text-center rounded-lg border border-border-medium bg-surface-container-lowest peer-checked:bg-primary-fixed peer-checked:border-primary-container peer-checked:text-primary font-label text-xs font-bold transition-all">
                       Siang (12:00 - 16:00)
                     </div>
                   </label>

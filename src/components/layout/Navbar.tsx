@@ -20,6 +20,8 @@ const NAV_ITEMS = [
   { id: "lokasi", label: "Lokasi" },
 ];
 
+const SCROLL_SPY_IDS = [...NAV_ITEMS.map((item) => item.id), "reservasi"];
+
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -29,10 +31,7 @@ export function Navbar() {
     () => false
   );
 
-  const activeSection = useScrollSpy(
-    NAV_ITEMS.map((item) => item.id),
-    "-20% 0px -60% 0px"
-  );
+  const activeSection = useScrollSpy(SCROLL_SPY_IDS, "-20% 0px -60% 0px");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,7 +89,7 @@ export function Navbar() {
           <Link
             href="#hero"
             onClick={(e) => smoothScrollTo("hero", e)}
-            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-primary-container rounded-lg p-1 cursor-pointer"
+            className="min-h-[44px] flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus:ring-2 focus:ring-primary-container rounded-lg py-1.5 px-1 cursor-pointer"
             aria-label="Bengkel Mobil Bunul Beranda"
           >
             <div className="relative w-8 h-8 sm:w-9 sm:h-9 shrink-0">

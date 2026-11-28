@@ -1,91 +1,72 @@
 {
-  "timestamp": "2026-11-21T18:30:51.314Z",
+  "timestamp": "2026-11-25T12:49:42.765Z",
+  "auditUrl": "http://localhost:3005",
   "viewport": {
     "desktop": "1440x900",
     "mobile": "390x844"
   },
+  "heroCheckDesktop": {
+    "hasLiveStatus": true,
+    "hasGoogleReviewsStat": true,
+    "hasOverflow": false
+  },
+  "mobileHeroCheck": [
+    {
+      "text": "Reservasi Jadwal Servis",
+      "width": 358,
+      "height": 46,
+      "right": 374
+    },
+    {
+      "text": "Lihat Layanan",
+      "width": 174,
+      "height": 44,
+      "right": 190
+    },
+    {
+      "text": "0851-0020-7777(0851) 0020-7777",
+      "width": 174,
+      "height": 44,
+      "right": 374
+    },
+    {
+      "text": "4.9/ 5.0500+ Ulasan Google",
+      "width": 154,
+      "height": 58,
+      "right": 357
+    }
+  ],
   "brokenImages": [],
   "mobileOverflow": {
     "scrollWidth": 390,
     "clientWidth": 390,
     "windowWidth": 390,
     "hasHorizontalScroll": false,
-    "overflowingCount": 282,
-    "elementsOverflowing": [
-      {
-        "tag": "DIV",
-        "id": "",
-        "className": "w-[85vw] sm:w-[calc((100%-24px)/2)] lg:w-[calc((100%-48px)/3)] shrink-0 snap-start bg-white rounded-xl shadow-[0px_10px_24px_-4px_rgba(30,27,75,0.08)] border border-border-light overflow-hidden flex flex-col group hover-industrial-card",
-        "right": 703,
-        "width": 331.5
-      },
-      {
-        "tag": "DIV",
-        "id": "",
-        "className": "relative w-full h-48 sm:h-52",
-        "right": 702,
-        "width": 329.5
-      },
-      {
-        "tag": "DIV",
-        "id": "",
-        "className": "relative w-full h-full overflow-hidden rounded-t-xl bg-surface-container",
-        "right": 702,
-        "width": 329.5
-      },
-      {
-        "tag": "IMG",
-        "id": "",
-        "className": "object-cover group-hover:scale-105 transition-transform duration-300 ease-industrial ",
-        "right": 702,
-        "width": 329.5
-      },
-      {
-        "tag": "DIV",
-        "id": "",
-        "className": "absolute bottom-0 inset-x-0 h-1 bg-[#1d1583] z-10",
-        "right": 702,
-        "width": 329.5
-      },
-      {
-        "tag": "DIV",
-        "id": "",
-        "className": "absolute -bottom-7 inset-x-0 flex justify-center z-30 pointer-events-none",
-        "right": 702,
-        "width": 329.5
-      },
-      {
-        "tag": "DIV",
-        "id": "",
-        "className": "w-14 h-14 bg-[#0a005d] rounded-xl shadow-lg border-2 border-white flex items-center justify-center text-white",
-        "right": 565.25,
-        "width": 56
-      },
-      {
-        "tag": "svg",
-        "id": "",
-        "className": "[object SVGAnimatedString]",
-        "right": 549.25,
-        "width": 24
-      },
-      {
-        "tag": "circle",
-        "id": "",
-        "className": "[object SVGAnimatedString]",
-        "right": 547.25,
-        "width": 20
-      },
-      {
-        "tag": "circle",
-        "id": "",
-        "className": "[object SVGAnimatedString]",
-        "right": 539.25,
-        "width": 4
-      }
-    ]
+    "unexpectedOverflowCount": 0,
+    "unexpectedOverflow": []
   },
   "serviceAutoFill": {
-    "success": false
+    "success": true,
+    "value": "Perawatan Berkala"
+  },
+  "portfolioCheck": {
+    "totalCards": 4,
+    "playButtonsCount": 4,
+    "iframesAfterFirst": 1,
+    "iframesAfterSecond": 1,
+    "iframesAfterClose": 0,
+    "singleActiveVerified": true
+  },
+  "testimonialsCheck": {
+    "cardsCount": 7,
+    "dotsCount": 7,
+    "dotSwitchWorked": true
+  },
+  "mapGuardCheck": {
+    "found": true,
+    "initiallyPointerEventsNone": true,
+    "activatedPointerEventsAuto": true,
+    "lockedLabelNow": true
   },
   "a11y": {
     "forms": [
@@ -134,413 +115,188 @@
       {
         "id": "waktu",
         "type": "radio",
-        "hasLabel": false,
-        "labelContent": null
+        "hasLabel": true,
+        "labelContent": "Sesi Waktu Pagi (08:00 sampai 12:00 WIB)"
       },
       {
         "id": "waktu",
         "type": "radio",
-        "hasLabel": false,
-        "labelContent": null
+        "hasLabel": true,
+        "labelContent": "Sesi Waktu Siang (12:00 sampai 16:00 WIB)"
       }
     ],
     "headings": [
       {
         "tag": "H1",
-        "text": "Perbaikan dan Perawatan Mobil Standar Pr",
-        "fontSize": "30px",
-        "fontWeight": "800",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "text": "Perbaikan dan Perawatan Mobil Standar Presisi",
+        "fontSize": "26px",
+        "fontWeight": "800"
       },
       {
         "tag": "H2",
-        "text": "Transparansi Total di Setiap Putaran Bau",
+        "text": "Transparansi Total di Setiap Putaran Baut & D",
         "fontSize": "24px",
-        "fontWeight": "800",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "800"
       },
       {
         "tag": "H3",
         "text": "Proteksi Kendaraan & Part OEM",
         "fontSize": "14px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "700"
       },
       {
         "tag": "H3",
         "text": "Diagnostik Mesin & Sensor OBD-2",
         "fontSize": "14px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "700"
       },
       {
         "tag": "H3",
         "text": "Sistem Rem & Kaki-kaki Andal",
         "fontSize": "14px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "700"
       },
       {
         "tag": "H2",
         "text": "Katalog Layanan Spesialis",
         "fontSize": "24px",
-        "fontWeight": "800",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
-      },
-      {
-        "tag": "H3",
-        "text": "Servis Kelistrikan & Aki",
-        "fontSize": "20px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
-      },
-      {
-        "tag": "H3",
-        "text": "Sistem Rem & ABS",
-        "fontSize": "20px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
-      },
-      {
-        "tag": "H3",
-        "text": "Engine Tune-Up Plus",
-        "fontSize": "20px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
-      },
-      {
-        "tag": "H3",
-        "text": "AC Mobil & Flushing",
-        "fontSize": "20px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
-      },
-      {
-        "tag": "H3",
-        "text": "Kaki-kaki & Suspensi",
-        "fontSize": "20px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
-      },
-      {
-        "tag": "H3",
-        "text": "Transmisi Otomatis & Manual",
-        "fontSize": "20px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
-      },
-      {
-        "tag": "H3",
-        "text": "Sistem Pendingin & Radiator",
-        "fontSize": "20px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "800"
       },
       {
         "tag": "H3",
         "text": "Perawatan Servis Berkala",
         "fontSize": "20px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "Servis Kelistrikan & Aki",
+        "fontSize": "20px",
+        "fontWeight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "Sistem Rem & ABS",
+        "fontSize": "20px",
+        "fontWeight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "Engine Tune-Up Plus",
+        "fontSize": "20px",
+        "fontWeight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "AC Mobil & Flushing",
+        "fontSize": "20px",
+        "fontWeight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "Kaki-kaki & Suspensi",
+        "fontSize": "20px",
+        "fontWeight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "Transmisi Otomatis & Manual",
+        "fontSize": "20px",
+        "fontWeight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "Sistem Pendingin & Radiator",
+        "fontSize": "20px",
+        "fontWeight": "700"
       },
       {
         "tag": "H3",
         "text": "Body Repair & Cat Panel",
         "fontSize": "20px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "700"
       },
       {
         "tag": "H2",
         "text": "Lihat Langsung Hasil Kerja Kami",
         "fontSize": "24px",
-        "fontWeight": "800",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "800"
       },
       {
-        "tag": "H4",
-        "text": "Overhaul Mesin Kijang Innova Reborn Dies",
+        "tag": "H3",
+        "text": "Proses Flushing Radiator",
         "fontSize": "14px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "700"
       },
       {
-        "tag": "H4",
-        "text": "Solusi Getar Kaki-kaki Honda CR-V di Kec",
+        "tag": "H3",
+        "text": "Proses Tune Up & Kalibrasi Mesin",
         "fontSize": "14px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "700"
       },
       {
-        "tag": "H4",
-        "text": "Diagnostik & Solusi Transmisi Matik Nyen",
+        "tag": "H3",
+        "text": "Proses Overhaul Kopling (OH Clutch)",
         "fontSize": "14px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "700"
       },
       {
-        "tag": "H4",
-        "text": "Restorasi Kompresor AC Avanza Dingin Men",
+        "tag": "H3",
+        "text": "Suasana Harian Bengkel Mobil Bunul",
         "fontSize": "14px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "700"
       },
       {
         "tag": "H2",
-        "text": "Kepercayaan Kustomer Adalah Bukti Kualit",
+        "text": "Kepercayaan Kustomer Adalah Bukti Kualitas Ka",
         "fontSize": "24px",
-        "fontWeight": "800",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "800"
       },
       {
         "tag": "H2",
         "text": "Formulir Reservasi Servis",
         "fontSize": "24px",
-        "fontWeight": "800",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "800"
       },
       {
         "tag": "H2",
         "text": "Kunjungi Workshop Bengkel Mobil Bunul",
         "fontSize": "24px",
-        "fontWeight": "800",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "800"
       },
       {
-        "tag": "H4",
+        "tag": "H3",
         "text": "Fasilitas Kenyamanan Pelanggan",
         "fontSize": "12px",
-        "fontWeight": "700",
-        "fontFamily": "\"Public Sans\", \"Public Sans Fallback\", sans-serif"
+        "fontWeight": "700"
       },
       {
-        "tag": "H4",
+        "tag": "H3",
         "text": "Navigasi Cepat",
         "fontSize": "14px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "700"
       },
       {
-        "tag": "H4",
+        "tag": "H3",
         "text": "Layanan Spesialis",
         "fontSize": "14px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
+        "fontWeight": "700"
+      },
+      {
+        "tag": "H3",
+        "text": "Jam Operasional",
+        "fontSize": "14px",
+        "fontWeight": "700"
       },
       {
         "tag": "H4",
-        "text": "Jam Operasional",
-        "fontSize": "14px",
-        "fontWeight": "700",
-        "fontFamily": "\"Plus Jakarta Sans\", \"Plus Jakarta Sans Fallback\", sans-serif"
-      },
-      {
-        "tag": "H5",
         "text": "Hubungi WhatsApp Resmi",
         "fontSize": "12px",
-        "fontWeight": "700",
-        "fontFamily": "\"Public Sans\", \"Public Sans Fallback\", sans-serif"
+        "fontWeight": "700"
       }
     ],
-    "touchTargets": [
-      {
-        "tag": "A",
-        "text": "Bengkel BunulSpesialis Servis ",
-        "width": 221,
-        "height": 41,
-        "href": "#hero"
-      },
-      {
-        "tag": "BUTTON",
-        "text": "KONSULTASI LAYANAN",
-        "width": 172,
-        "height": 16,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "KONSULTASI LAYANAN",
-        "width": 172,
-        "height": 16,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "KONSULTASI LAYANAN",
-        "width": 172,
-        "height": 16,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "KONSULTASI LAYANAN",
-        "width": 172,
-        "height": 16,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "KONSULTASI LAYANAN",
-        "width": 172,
-        "height": 16,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "KONSULTASI LAYANAN",
-        "width": 172,
-        "height": 16,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "KONSULTASI LAYANAN",
-        "width": 172,
-        "height": 16,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "KONSULTASI LAYANAN",
-        "width": 172,
-        "height": 16,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "KONSULTASI LAYANAN",
-        "width": 172,
-        "height": 16,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "",
-        "width": 36,
-        "height": 36,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "",
-        "width": 36,
-        "height": 36,
-        "href": null
-      },
-      {
-        "tag": "A",
-        "text": "Tonton Video",
-        "width": 93,
-        "height": 16,
-        "href": "https://www.tiktok.com"
-      },
-      {
-        "tag": "A",
-        "text": "Tonton Video",
-        "width": 93,
-        "height": 16,
-        "href": "https://www.instagram.com"
-      },
-      {
-        "tag": "A",
-        "text": "Tonton Video",
-        "width": 93,
-        "height": 16,
-        "href": "https://www.youtube.com"
-      },
-      {
-        "tag": "A",
-        "text": "Tonton Video",
-        "width": 93,
-        "height": 16,
-        "href": "https://www.tiktok.com"
-      },
-      {
-        "tag": "BUTTON",
-        "text": "",
-        "width": 40,
-        "height": 40,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "",
-        "width": 40,
-        "height": 40,
-        "href": null
-      },
-      {
-        "tag": "BUTTON",
-        "text": "Aktifkan Peta",
-        "width": 123,
-        "height": 30,
-        "href": null
-      },
-      {
-        "tag": "A",
-        "text": "Buka Rute",
-        "width": 87,
-        "height": 28,
-        "href": "https://maps.google.com/?q=Bengkel+Mobil+Bunul+Malang"
-      },
-      {
-        "tag": "A",
-        "text": "Beranda",
-        "width": 358,
-        "height": 16,
-        "href": "#hero"
-      },
-      {
-        "tag": "A",
-        "text": "Tentang Kami",
-        "width": 358,
-        "height": 16,
-        "href": "#tentang-kami"
-      },
-      {
-        "tag": "A",
-        "text": "Katalog Layanan",
-        "width": 358,
-        "height": 16,
-        "href": "#layanan"
-      },
-      {
-        "tag": "A",
-        "text": "Portofolio Kerja",
-        "width": 358,
-        "height": 16,
-        "href": "#portofolio"
-      },
-      {
-        "tag": "A",
-        "text": "Testimoni Kustomer",
-        "width": 358,
-        "height": 16,
-        "href": "#testimoni"
-      },
-      {
-        "tag": "A",
-        "text": "Formulir Reservasi",
-        "width": 358,
-        "height": 16,
-        "href": "#reservasi"
-      },
-      {
-        "tag": "A",
-        "text": "Lokasi & Peta",
-        "width": 358,
-        "height": 16,
-        "href": "#lokasi"
-      },
-      {
-        "tag": "A",
-        "text": "Chat Admin Bengkel",
-        "width": 358,
-        "height": 36,
-        "href": "https://wa.me/6285100207777"
-      }
-    ],
-    "contrastIssues": [],
-    "focusIndicators": []
+    "headingSkips": [],
+    "smallPrimaryTouchTargets": [],
+    "smallPaginationDots": []
   }
 }

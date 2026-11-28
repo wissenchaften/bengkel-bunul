@@ -87,9 +87,9 @@ export function LocationSection() {
 
             {/* Workshop Facilities Grid */}
             <div>
-              <h4 className="font-label text-xs uppercase tracking-wider text-surface-container-high font-bold mb-3">
+              <h3 className="font-label text-xs uppercase tracking-wider text-surface-container-high font-bold mb-3">
                 Fasilitas Kenyamanan Pelanggan
-              </h4>
+              </h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 <div className="bg-[#161338] p-3 rounded-lg border border-border-dark flex items-center gap-2">
                   <AirVent className="w-4 h-4 text-accent-amber-deep shrink-0" />
@@ -164,7 +164,7 @@ export function LocationSection() {
                   <button
                     type="button"
                     onClick={() => setMapInteractive(!mapInteractive)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/90 hover:bg-primary text-white font-label text-xs font-semibold shadow-lg backdrop-blur-sm border border-white/20 active:scale-95 transition-all cursor-pointer"
+                    className="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-2 rounded-full bg-primary/90 hover:bg-primary text-white font-label text-xs font-semibold shadow-lg backdrop-blur-sm border border-white/20 active:scale-95 transition-all cursor-pointer"
                   >
                     <Compass className="w-3.5 h-3.5 text-accent-amber-deep" />
                     <span>
@@ -174,13 +174,13 @@ export function LocationSection() {
                 </div>
 
                 {/* Bottom Floating Pin Info */}
-                <div className="absolute bottom-3 inset-x-3 z-10 bg-white/95 backdrop-blur-md p-3.5 rounded-xl border border-border-light text-on-surface shadow-xl flex items-center justify-between">
+                <div className="absolute bottom-3 inset-x-3 z-10 bg-white/95 backdrop-blur-md p-3.5 rounded-xl border border-border-light text-on-surface shadow-xl flex items-center justify-between gap-2">
                   <div>
                     <div className="flex items-center gap-1.5 text-primary font-headline text-xs sm:text-sm font-bold">
                       <MapPin className="w-4 h-4 text-accent-amber-deep shrink-0" />
                       <span>Bengkel Mobil Bunul Malang</span>
                     </div>
-                    <div className="font-body text-[11px] text-outline mt-0.5">
+                    <div className="font-body text-[11px] text-on-surface-variant mt-0.5">
                       Bunulrejo, Kec. Blimbing, Kota Malang
                     </div>
                   </div>
@@ -188,7 +188,7 @@ export function LocationSection() {
                     href="https://maps.google.com/?q=Bengkel+Mobil+Bunul+Malang"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="shrink-0 px-3.5 py-1.5 rounded-full bg-primary hover:bg-primary-container text-white text-xs font-label font-bold transition-colors"
+                    className="shrink-0 inline-flex items-center justify-center min-h-[44px] px-4 py-2 rounded-full bg-primary hover:bg-primary-container text-white text-xs font-label font-bold transition-colors"
                   >
                     Buka Rute
                   </a>

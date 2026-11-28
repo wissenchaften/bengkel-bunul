@@ -53,11 +53,11 @@ export function Footer() {
 
           {/* Col 2: Quick Navigation */}
           <div>
-            <h4 className="font-headline font-bold text-sm text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+            <h3 className="font-headline font-bold text-sm text-white uppercase tracking-wider mb-3 flex items-center gap-2">
               <Navigation className="w-4 h-4 text-accent-amber-deep" />
               <span>Navigasi Cepat</span>
-            </h4>
-            <ul className="space-y-2.5 font-body text-xs sm:text-sm">
+            </h3>
+            <ul className="space-y-0 font-body text-xs sm:text-sm">
               {[
                 { href: "#hero", label: "Beranda" },
                 { href: "#tentang-kami", label: "Tentang Kami" },
@@ -71,9 +71,9 @@ export function Footer() {
                   <Link
                     href={link.href}
                     onClick={(e) => smoothScrollTo(link.href, e)}
-                    className="text-surface-container-high hover:text-white transition-colors flex items-center gap-1.5 group cursor-pointer"
+                    className="text-surface-container-high hover:text-white transition-colors flex items-center gap-1.5 min-h-[44px] py-2 group cursor-pointer"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-outline group-hover:translate-x-0.5 transition-transform" />
+                    <ChevronRight className="w-3.5 h-3.5 text-secondary-container group-hover:translate-x-0.5 transition-transform" />
                     <span>{link.label}</span>
                   </Link>
                 </li>
@@ -83,10 +83,10 @@ export function Footer() {
 
           {/* Col 3: Service Categories */}
           <div>
-            <h4 className="font-headline font-bold text-sm text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+            <h3 className="font-headline font-bold text-sm text-white uppercase tracking-wider mb-4 flex items-center gap-2">
               <Wrench className="w-4 h-4 text-accent-amber-deep" />
               <span>Layanan Spesialis</span>
-            </h4>
+            </h3>
             <ul className="space-y-2 font-body text-xs text-surface-container-high">
               <li className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent-amber-deep" />
@@ -121,28 +121,28 @@ export function Footer() {
 
           {/* Col 4: Operating Hours & Direct WhatsApp */}
           <div>
-            <h4 className="font-headline font-bold text-sm text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+            <h3 className="font-headline font-bold text-sm text-white uppercase tracking-wider mb-4 flex items-center gap-2">
               <Clock className="w-4 h-4 text-accent-amber-deep" />
               <span>Jam Operasional</span>
-            </h4>
+            </h3>
             <div className="space-y-2 font-body text-xs sm:text-sm text-surface-container-high mb-5">
               <div className="flex justify-between pb-1 border-b border-border-dark">
                 <span>Setiap Hari:</span>
                 <span className="font-bold text-white">08:00 - 17:00 WIB</span>
               </div>
-              <p className="text-[11px] text-outline pt-1">
+              <p className="text-xs text-secondary-container pt-1">
                 Melayani servis terjadwal dan darurat di jam kerja workshop.
               </p>
             </div>
 
-            <h5 className="font-label text-xs uppercase tracking-wider text-surface-container-high mb-2 font-bold">
+            <h4 className="font-label text-xs uppercase tracking-wider text-surface-container-high mb-2 font-bold">
               Hubungi WhatsApp Resmi
-            </h5>
+            </h4>
             <a
               href="https://wa.me/6285100207777"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 w-full justify-center bg-whatsapp-green hover:bg-[#1ebd58] text-white font-label text-xs font-bold py-2.5 px-4 rounded-lg shadow-sm transition-all hover:scale-[1.01]"
+              className="inline-flex items-center gap-2 w-full min-h-[44px] justify-center bg-whatsapp-green hover:bg-[#1ebd58] text-white font-label text-xs font-bold py-3 px-4 rounded-lg shadow-sm transition-all hover:scale-[1.01]"
             >
               <Phone className="w-4 h-4" />
               <span>Chat Admin Bengkel</span>
@@ -151,14 +151,14 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar: Copyright & Legal */}
-        <div className="pt-6 border-t border-border-dark flex flex-col sm:flex-row items-center justify-between gap-3 text-outline font-body text-xs text-center sm:text-left">
+        <div className="pt-6 border-t border-border-dark flex flex-col sm:flex-row items-center justify-between gap-3 text-secondary-container font-body text-xs text-center sm:text-left">
           <p>© 2026 Bengkel Mobil Bunul. Seluruh hak dilindungi.</p>
           <div className="flex items-center gap-4">
-            <span className="hover:text-surface-container-high cursor-pointer transition-colors">
+            <span className="hover:text-white transition-colors">
               Standar Servis Resmi
             </span>
-            <span>•</span>
-            <span className="hover:text-surface-container-high cursor-pointer transition-colors">
+            <span aria-hidden="true">•</span>
+            <span className="hover:text-white transition-colors">
               Garansi 1.000 KM / 30 Hari
             </span>
           </div>

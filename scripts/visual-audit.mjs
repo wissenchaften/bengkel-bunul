@@ -5,12 +5,12 @@ import path from "node:path";
 const CHROME_PATH = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 const USER_DATA_DIR = "C:\\Users\\Wissenchaften\\AppData\\Local\\Temp\\chrome_audit_profile";
 const SCREENSHOT_DIR = "C:\\Users\\Wissenchaften\\Desktop\\Web Bengkel Bunul\\docs\\ui-visual-validator\\screenshots";
+const AUDIT_URL = process.env.AUDIT_URL || "http://localhost:3005";
 
 if (!fs.existsSync(SCREENSHOT_DIR)) {
   fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
 }
 
-// Helper to launch Chrome
 function launchChrome() {
   const args = [
     "--headless=new",
@@ -26,16 +26,13 @@ function launchChrome() {
   return spawn(CHROME_PATH, args, { stdio: "ignore" });
 }
 
-// Helper to sleep
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// Helper for CDP client
 class CDPClient {
   constructor(wsUrl) {
     this.ws = new WebSocket(wsUrl);
     this.id = 0;
     this.callbacks = new Map();
-    this.events = [];
 
     this.ws.onmessage = (event) => {
       const msg = JSON.parse(event.data);
@@ -73,11 +70,10 @@ class CDPClient {
 }
 
 async function runAudit() {
-  console.log("Starting Chrome...");
+  console.log(`Starting Chrome for ${AUDIT_URL}...`);
   const chromeProcess = launchChrome();
 
   try {
-    // Wait for debug port
     let versionData = null;
     for (let i = 0; i < 20; i++) {
       try {
@@ -86,7 +82,7 @@ async function runAudit() {
           versionData = await res.json();
           break;
         }
-      } catch (e) {}
+      } catch {}
       await sleep(500);
     }
 
@@ -94,25 +90,17 @@ async function runAudit() {
       throw new Error("Could not connect to Chrome debugging port");
     }
 
-    console.log("Connected to Chrome. Creating target...");
-    const targetRes = await fetch("http://127.0.0.1:9222/json/new?about:blank", { method: "PUT" });
+    const targetRes = await fetch("http://127.0.0.1:9222/json/new?about:blank", {
+      method: "PUT",
+    });
     const targetData = await targetRes.json();
-    const wsUrl = targetData.webSocketDebuggerUrl;
-
-    const cdp = new CDPClient(wsUrl);
+    const cdp = new CDPClient(targetData.webSocketDebuggerUrl);
     await cdp.ready();
-    console.log("CDP session established.");
 
     await cdp.send("Page.enable");
     await cdp.send("DOM.enable");
     await cdp.send("Runtime.enable");
-    await cdp.send("Log.enable");
 
-    // Track console messages and errors
-    const consoleLogs = [];
-    const jsErrors = [];
-
-    // Helper to evaluate script
     const evaluate = async (expression) => {
       const res = await cdp.send("Runtime.evaluate", {
         expression,
@@ -122,11 +110,8 @@ async function runAudit() {
       return res.result?.value;
     };
 
-    // Helper to take screenshot
-    const captureScreenshot = async (filename, clip = null) => {
-      const params = { format: "png" };
-      if (clip) params.clip = clip;
-      const res = await cdp.send("Page.captureScreenshot", params);
+    const captureScreenshot = async (filename) => {
+      const res = await cdp.send("Page.captureScreenshot", { format: "png" });
       const filePath = path.join(SCREENSHOT_DIR, filename);
       fs.writeFileSync(filePath, Buffer.from(res.data, "base64"));
       console.log(`Saved screenshot: ${filename}`);
@@ -142,14 +127,45 @@ async function runAudit() {
       mobile: false,
     });
 
-    console.log("Navigating to http://localhost:3000...");
-    await cdp.send("Page.navigate", { url: "http://localhost:3000" });
-    await sleep(2500); // Wait for hydration and motion animations
+    await cdp.send("Page.navigate", { url: AUDIT_URL });
+    await sleep(2500);
 
-    // 1. Desktop Hero
     await captureScreenshot("desktop-01-hero.png");
 
-    // Check broken images
+    const heroCheckDesktop = await evaluate(`(() => {
+      const hero = document.getElementById('hero');
+      const text = hero?.innerText || '';
+      return {
+        hasLiveStatus: text.includes('Buka Sekarang') || text.includes('Sedang Tutup') || text.includes('08:00 - 17:00 WIB'),
+        hasGoogleReviewsStat: text.includes('500+ Ulasan Google'),
+        hasOverflow: document.documentElement.scrollWidth > document.documentElement.clientWidth
+      };
+    })()`);
+
+    const sections = [
+      "tentang-kami",
+      "layanan",
+      "portofolio",
+      "testimoni",
+      "reservasi",
+      "lokasi",
+    ];
+
+    for (const sectionId of sections) {
+      await evaluate(
+        `document.getElementById('${sectionId}')?.scrollIntoView({ behavior: 'instant', block: 'start' });`
+      );
+      await sleep(850);
+      await captureScreenshot(`desktop-${sectionId}.png`);
+    }
+
+    await evaluate(
+      `window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' });`
+    );
+    await sleep(600);
+    await captureScreenshot("desktop-footer.png");
+
+    // Check broken images after all sections scrolled into view (lazy images loaded)
     const brokenImages = await evaluate(`(() => {
       const imgs = Array.from(document.querySelectorAll('img'));
       return imgs.map(img => ({
@@ -161,39 +177,61 @@ async function runAudit() {
         isBroken: img.complete && (img.naturalWidth === 0 || img.naturalHeight === 0)
       })).filter(img => img.isBroken);
     })()`);
-    console.log("Broken images found:", brokenImages.length, brokenImages);
+    console.log("Broken images found:", brokenImages.length);
 
-    // Section bounding rects and scroll captures
-    const sections = ["tentang-kami", "layanan", "portofolio", "testimoni", "reservasi", "lokasi"];
-    const desktopSectionScreenshots = {};
-
-    for (const sectionId of sections) {
-      await evaluate(`document.getElementById('${sectionId}')?.scrollIntoView({ behavior: 'instant', block: 'start' });`);
-      await sleep(800);
-      const filename = `desktop-${sectionId}.png`;
-      await captureScreenshot(filename);
-      desktopSectionScreenshots[sectionId] = filename;
-    }
-
-    // Scroll to footer
-    await evaluate(`window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' });`);
-    await sleep(600);
-    await captureScreenshot("desktop-footer.png");
-
-    // Test interactive service selection flow
-    console.log("Testing service card auto-fill interaction...");
-    const serviceTestResult = await evaluate(`(() => {
-      // Find button on service card
-      const btn = document.querySelector('#layanan button');
-      if (!btn) return { error: 'No service button found' };
-      btn.click();
-      return { success: true };
+    // Interactive Desktop Test 1: Service card auto-fill -> #reservasi
+    await evaluate(
+      `document.getElementById('layanan')?.scrollIntoView({ behavior: 'instant', block: 'start' });`
+    );
+    await sleep(400);
+    await evaluate(`(() => {
+      const buttons = Array.from(document.querySelectorAll('#layanan button'));
+      const consultBtn = buttons.find(b => b.textContent?.includes('KONSULTASI LAYANAN'));
+      if (consultBtn) consultBtn.click();
     })()`);
     await sleep(1000);
-    const reservationServiceValue = await evaluate(`document.getElementById('layanan')?.value`);
-    console.log("Auto-filled service dropdown value:", reservationServiceValue);
+    const serviceAutoFillValue = await evaluate(
+      `document.getElementById('layanan-select')?.value || document.querySelector('#reservasi select')?.value || null`
+    );
+    console.log("Auto-filled service dropdown value:", serviceAutoFillValue);
 
-    // --- PHASE 2: MOBILE AUDIT (390x844 - iPhone 12/13/14) ---
+    // Interactive Desktop Test 2: Portfolio single-active-player switch
+    await evaluate(
+      `document.getElementById('portofolio')?.scrollIntoView({ behavior: 'instant', block: 'start' });`
+    );
+    await sleep(500);
+    const portfolioCheck = await evaluate(`(async () => {
+      const sleepMs = (ms) => new Promise(r => setTimeout(r, ms));
+      const playBtns = Array.from(document.querySelectorAll('#portofolio button[aria-label^="Putar video"]'));
+      const totalCards = document.querySelectorAll('#portofolio h3, #portofolio h4').length;
+      if (playBtns.length < 2) return { totalCards, playButtonsCount: playBtns.length, singleActiveVerified: false };
+
+      playBtns[0].click();
+      await sleepMs(300);
+      const iframesAfterFirst = document.querySelectorAll('#portofolio iframe').length;
+
+      const nextPlayBtns = Array.from(document.querySelectorAll('#portofolio button[aria-label^="Putar video"]'));
+      nextPlayBtns[0]?.click();
+      await sleepMs(300);
+      const iframesAfterSecond = document.querySelectorAll('#portofolio iframe').length;
+
+      const closeBtn = document.querySelector('#portofolio button[aria-label^="Tutup pemutar"]');
+      closeBtn?.click();
+      await sleepMs(200);
+      const iframesAfterClose = document.querySelectorAll('#portofolio iframe').length;
+
+      return {
+        totalCards,
+        playButtonsCount: playBtns.length,
+        iframesAfterFirst,
+        iframesAfterSecond,
+        iframesAfterClose,
+        singleActiveVerified: iframesAfterFirst === 1 && iframesAfterSecond === 1 && iframesAfterClose === 0
+      };
+    })()`);
+    console.log("Portfolio interaction check:", portfolioCheck);
+
+    // --- PHASE 2: MOBILE AUDIT (390x844) ---
     console.log("\n=== AUDITING MOBILE (390x844) ===");
     await cdp.send("Emulation.setDeviceMetricsOverride", {
       width: 390,
@@ -203,30 +241,31 @@ async function runAudit() {
       hasTouch: true,
     });
     await cdp.send("Emulation.setUserAgentOverride", {
-      userAgent: "Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1",
+      userAgent:
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1",
     });
 
     await evaluate(`window.scrollTo({ top: 0, behavior: 'instant' });`);
     await sleep(1500);
-
-    // 1. Mobile Hero Viewport
     await captureScreenshot("mobile-01-hero.png");
 
-    // Check horizontal overflow (body width bug)
+    // Check real mobile page overflow (ignoring elements inside intentional horizontal carousels)
     const mobileOverflow = await evaluate(`(() => {
       const scrollWidth = document.documentElement.scrollWidth;
       const clientWidth = document.documentElement.clientWidth;
       const windowWidth = window.innerWidth;
-      const elementsOverflowing = [];
+      const unexpectedOverflow = [];
       document.querySelectorAll('*').forEach(el => {
+        const isInsideCarousel = !!el.closest('.snap-x, .overflow-x-auto');
+        if (isInsideCarousel) return;
         const rect = el.getBoundingClientRect();
-        if (rect.right > windowWidth + 2) {
-          elementsOverflowing.push({
+        if (rect.width > 0 && rect.right > windowWidth + 2) {
+          unexpectedOverflow.push({
             tag: el.tagName,
-            id: el.id,
-            className: el.className?.toString?.() || '',
-            right: rect.right,
-            width: rect.width
+            id: el.id || null,
+            className: (el.className?.toString?.() || '').slice(0, 80),
+            right: Math.round(rect.right),
+            width: Math.round(rect.width)
           });
         }
       });
@@ -235,59 +274,113 @@ async function runAudit() {
         clientWidth,
         windowWidth,
         hasHorizontalScroll: scrollWidth > clientWidth,
-        overflowingCount: elementsOverflowing.length,
-        elementsOverflowing: elementsOverflowing.slice(0, 10)
+        unexpectedOverflowCount: unexpectedOverflow.length,
+        unexpectedOverflow: unexpectedOverflow.slice(0, 10)
       };
     })()`);
     console.log("Mobile overflow check:", mobileOverflow);
 
-    // 2. Mobile Navigation Drawer Test
-    console.log("Testing mobile drawer interaction...");
-    const drawerOpen = await evaluate(`(() => {
+    // Mobile Hero CTA check
+    const mobileHeroCheck = await evaluate(`(() => {
+      const hero = document.getElementById('hero');
+      const btns = Array.from(hero?.querySelectorAll('a') || []);
+      return btns.map(a => {
+        const r = a.getBoundingClientRect();
+        return {
+          text: a.textContent?.trim().replace(/\\s+/g, ' '),
+          width: Math.round(r.width),
+          height: Math.round(r.height),
+          right: Math.round(r.right)
+        };
+      });
+    })()`);
+
+    // Mobile Navigation Drawer Test
+    await evaluate(`(() => {
       const hamburger = document.querySelector('header button[aria-label*="menu"]');
-      if (hamburger) {
-        hamburger.click();
-        return { clicked: true };
-      }
-      return { error: 'Hamburger not found' };
+      if (hamburger) hamburger.click();
     })()`);
     await sleep(600);
     await captureScreenshot("mobile-02-drawer-open.png");
 
-    // Close drawer
     await evaluate(`(() => {
       const closeBtn = document.querySelector('button[aria-label="Tutup menu"]');
       if (closeBtn) closeBtn.click();
     })()`);
     await sleep(600);
 
-    // Mobile Section screenshots
     for (const sectionId of sections) {
-      await evaluate(`document.getElementById('${sectionId}')?.scrollIntoView({ behavior: 'instant', block: 'start' });`);
-      await sleep(700);
-      const filename = `mobile-${sectionId}.png`;
-      await captureScreenshot(filename);
+      await evaluate(
+        `document.getElementById('${sectionId}')?.scrollIntoView({ behavior: 'instant', block: 'start' });`
+      );
+      await sleep(750);
+      await captureScreenshot(`mobile-${sectionId}.png`);
     }
 
-    // Mobile Footer
-    await evaluate(`window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' });`);
+    await evaluate(
+      `window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' });`
+    );
     await sleep(600);
     await captureScreenshot("mobile-footer.png");
 
-    // --- PHASE 3: ACCESSIBILITY & DESIGN SYSTEM AUDIT ---
-    console.log("\n=== RUNNING ACCESSIBILITY & DESIGN TOKEN AUDIT ===");
+    // Interactive Mobile Test 1: Testimonials pagination dots
+    await evaluate(
+      `document.getElementById('testimoni')?.scrollIntoView({ behavior: 'instant', block: 'start' });`
+    );
+    await sleep(400);
+    const testimonialsCheck = await evaluate(`(async () => {
+      const sleepMs = (ms) => new Promise(r => setTimeout(r, ms));
+      const dots = Array.from(document.querySelectorAll('#testimoni nav button'));
+      const cardsCount = document.querySelectorAll('#testimoni [aria-roledescription="slide"]').length;
+      if (dots.length < 3) return { cardsCount, dotsCount: dots.length, dotSwitchWorked: false };
+      dots[2].click();
+      await sleepMs(450);
+      const isThirdActive = dots[2].getAttribute('aria-current') === 'true';
+      dots[0].click();
+      await sleepMs(300);
+      return { cardsCount, dotsCount: dots.length, dotSwitchWorked: isThirdActive };
+    })()`);
+    console.log("Testimonials mobile check:", testimonialsCheck);
+
+    // Interactive Mobile Test 2: Map gesture guard toggle
+    await evaluate(
+      `document.getElementById('lokasi')?.scrollIntoView({ behavior: 'instant', block: 'start' });`
+    );
+    await sleep(400);
+    const mapGuardCheck = await evaluate(`(async () => {
+      const sleepMs = (ms) => new Promise(r => setTimeout(r, ms));
+      const iframeBefore = document.querySelector('#lokasi iframe')?.className || '';
+      const toggleBtn = Array.from(document.querySelectorAll('#lokasi button')).find(b =>
+        b.textContent?.includes('Aktifkan Interaksi Peta')
+      );
+      if (!toggleBtn) return { found: false };
+      toggleBtn.click();
+      await sleepMs(200);
+      const iframeAfter = document.querySelector('#lokasi iframe')?.className || '';
+      const lockedLabelNow = Array.from(document.querySelectorAll('#lokasi button')).some(b =>
+        b.textContent?.includes('Kunci Geser / Zoom')
+      );
+      return {
+        found: true,
+        initiallyPointerEventsNone: iframeBefore.includes('pointer-events-none'),
+        activatedPointerEventsAuto: iframeAfter.includes('pointer-events-auto'),
+        lockedLabelNow
+      };
+    })()`);
+    console.log("Map gesture guard check:", mapGuardCheck);
+
+    // --- PHASE 3: MOBILE ACCESSIBILITY & HEADING HIERARCHY AUDIT ---
+    console.log("\n=== RUNNING MOBILE ACCESSIBILITY & HEADING AUDIT ===");
     const a11yAudit = await evaluate(`(() => {
       const results = {
         forms: [],
         headings: [],
-        touchTargets: [],
-        contrastIssues: [],
-        focusIndicators: []
+        headingSkips: [],
+        smallPrimaryTouchTargets: [],
+        smallPaginationDots: []
       };
 
-      // Form inputs without labels
-      const inputs = document.querySelectorAll('input, select, textarea');
-      inputs.forEach(input => {
+      document.querySelectorAll('input, select, textarea').forEach(input => {
         const id = input.id;
         const label = id ? document.querySelector('label[for="' + id + '"]') : null;
         const ariaLabel = input.getAttribute('aria-label');
@@ -300,29 +393,43 @@ async function runAudit() {
         });
       });
 
-      // Headings hierarchy
-      const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-      headings.forEach(h => {
+      let prevLevel = 0;
+      document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(h => {
+        const level = Number(h.tagName.slice(1));
+        const text = h.textContent.trim().substring(0, 45);
+        if (prevLevel > 0 && level > prevLevel + 1) {
+          results.headingSkips.push({ from: 'H' + prevLevel, to: 'H' + level, text });
+        }
+        prevLevel = level;
         results.headings.push({
           tag: h.tagName,
-          text: h.textContent.trim().substring(0, 40),
+          text,
           fontSize: window.getComputedStyle(h).fontSize,
-          fontWeight: window.getComputedStyle(h).fontWeight,
-          fontFamily: window.getComputedStyle(h).fontFamily
+          fontWeight: window.getComputedStyle(h).fontWeight
         });
       });
 
-      // Interactive touch targets (< 44x44px check)
-      const buttons = document.querySelectorAll('button, a, input[type="submit"]');
-      buttons.forEach(btn => {
-        const rect = btn.getBoundingClientRect();
-        if (rect.width > 0 && rect.height > 0 && (rect.width < 44 || rect.height < 44)) {
-          results.touchTargets.push({
-            tag: btn.tagName,
-            text: btn.textContent.trim().substring(0, 30),
+      document.querySelectorAll('button, a, input[type="submit"]').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+        const isPaginationDot = !!el.closest('#testimoni nav');
+        if (isPaginationDot) {
+          if (rect.width < 24 || rect.height < 24) {
+            results.smallPaginationDots.push({
+              text: el.getAttribute('aria-label') || '',
+              width: Math.round(rect.width),
+              height: Math.round(rect.height)
+            });
+          }
+          return;
+        }
+        if (rect.width < 44 || rect.height < 44) {
+          results.smallPrimaryTouchTargets.push({
+            tag: el.tagName,
+            text: (el.textContent.trim() || el.getAttribute('aria-label') || '').substring(0, 35),
             width: Math.round(rect.width),
             height: Math.round(rect.height),
-            href: btn.getAttribute('href') || null
+            href: el.getAttribute('href') || null
           });
         }
       });
@@ -330,20 +437,26 @@ async function runAudit() {
       return results;
     })()`);
 
-    console.log("Form inputs audited:", a11yAudit.forms.length);
-    console.log("Small touch targets (< 44px):", a11yAudit.touchTargets.length);
+    console.log("Heading skips:", a11yAudit.headingSkips.length, a11yAudit.headingSkips);
+    console.log("Small primary touch targets (< 44px):", a11yAudit.smallPrimaryTouchTargets.length);
+    console.log("Small pagination dots (< 24px):", a11yAudit.smallPaginationDots.length);
 
-    // Compile complete results
     const auditSummary = {
       timestamp: new Date().toISOString(),
+      auditUrl: AUDIT_URL,
       viewport: { desktop: "1440x900", mobile: "390x844" },
+      heroCheckDesktop,
+      mobileHeroCheck,
       brokenImages,
       mobileOverflow,
       serviceAutoFill: {
-        success: reservationServiceValue === "Kelistrikan",
-        value: reservationServiceValue
+        success: serviceAutoFillValue === "Perawatan Berkala",
+        value: serviceAutoFillValue,
       },
-      a11y: a11yAudit
+      portfolioCheck,
+      testimonialsCheck,
+      mapGuardCheck,
+      a11y: a11yAudit,
     };
 
     fs.writeFileSync(
@@ -356,11 +469,11 @@ async function runAudit() {
   } finally {
     try {
       chromeProcess.kill();
-    } catch (e) {}
+    } catch {}
   }
 }
 
-runAudit().catch(err => {
+runAudit().catch((err) => {
   console.error("Audit failed:", err);
   process.exit(1);
 });

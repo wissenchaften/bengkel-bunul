@@ -1,50 +1,56 @@
 [
   {
     "id": "vid-1",
-    "vehicle": "KIJANG INNOVA 2GD-FTV",
-    "title": "Overhaul Mesin Kijang Innova Reborn Diesel, Suara Halus Kembali",
-    "description": "Pembersihan kerak carbon exhaust dan kalibrasi common rail presisi.",
-    "views": "18.4K",
-    "platform": "TikTok Feed",
-    "platformIcon": "play_circle",
-    "platformColor": "text-accent-amber-deep",
-    "platformUrl": "https://www.tiktok.com",
-    "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuAnCV-heNhgSA2bAaOtELsBcXSkSoSOG_VwyLXPC_lCqPeK8pZ-fVXv2WPcxV9YeRFJ9Cfaec0Tk5g8aMJithcKUl6P2wzXjx-l_Js4QIhMObckgM7b_XRvcGnIVkkZWxILDrcJnNK-XmB4YDs0jvmy4oPrlX2EI5qrem-3s-uhCrmOjeF-Ro2dYTpua6D9QcwuLiBZpAk5LPaUAyoU2iaWO_k3nqToDwuU69hHdPme"
+    "vehicle": "Sistem Pendingin",
+    "title": "Proses Flushing Radiator",
+    "description": "Kuras kerak saluran radiator dan pengisian ulang coolant OEM.",
+    "platform": "TikTok",
+    "platformUrl": "https://www.tiktok.com/@bengkelmobilbunul/video/7705257752867638580",
+    "thumbnail": "/images/about/about-inspection.webp"
   },
   {
     "id": "vid-2",
-    "vehicle": "HONDA CR-V TURBO",
-    "title": "Solusi Getar Kaki-kaki Honda CR-V di Kecepatan 80 km/jam",
-    "description": "Penyelesaian bushing arm robek dan spooring komputer 3D berakurasi tinggi.",
-    "views": "32.1K",
-    "platform": "Instagram Reels",
-    "platformIcon": "photo_camera",
-    "platformColor": "text-pink-400",
-    "platformUrl": "https://www.instagram.com",
-    "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuCe4ENqhx-sSZHcHts_0hyY23CiqmWQolBeFlgS-B7p8AWPzxqSp2seR0cpxUlDGC7LYm1J3bFZil0sDLRnsUlEm3YqhB62x3e7REbhqpumg5K1hhb1LPZBzVVR-_ntZ1MkydvaTltcqGBrO6YPZWgB2McNkq1hlH2CpqEOTbR79thEmQongJqEStSS71ZK-8QDkweI6cgRKF71huhtsX_5tofi6xo8o_BmibZTsElJ"
+    "vehicle": "Servis Mesin",
+    "title": "Proses Tune Up & Kalibrasi Mesin",
+    "description": "Pembersihan ruang bakar, cek busi, injeksi, dan scanner OBD-2.",
+    "platform": "TikTok",
+    "platformUrl": "https://www.tiktok.com/@bengkelmobilbunul/video/7701968809653013780",
+    "thumbnail": "/images/about/about-scanner.webp"
   },
   {
     "id": "vid-3",
-    "vehicle": "MITSUBISHI PAJERO SPORT",
-    "title": "Diagnostik & Solusi Transmisi Matik Nyentak Pajero Sport",
-    "description": "Flushing oli ATF presisi dan kalibrasi ulang solenoid valve di workshop.",
-    "views": "45.8K",
-    "platform": "YouTube Shorts",
-    "platformIcon": "smart_display",
-    "platformColor": "text-red-500",
-    "platformUrl": "https://www.youtube.com",
-    "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBEIfSBxXydAZZ1OwR_UZSoPHrg8-39offNoMswjjHwwUaH7oGZqpP27I1b6t4AnlsjJyPm9RfxyZHH-ACqxvWNQVsM4WjXQcyZJYPomNe95Lh7Vc1iuCjIBPKqL_hWSN1JuclMDyh9JOYRY1fLyTtIAQzRKR8ZlMKg2707WHY037lTWSxQ8WzEgUkSfJ6hI1EfC8ZSAm3ahz3e7AX1-31vECpT5TDnFGBo-8A4Xdk1"
+    "vehicle": "Transmisi",
+    "title": "Proses Overhaul Kopling (OH Clutch)",
+    "description": "Penggantian kampas kopling, dekrup, dan pemeriksaan flywheel.",
+    "platform": "TikTok",
+    "platformUrl": "https://www.tiktok.com/@bengkelmobilbunul/video/7704168140216732948",
+    "thumbnail": "/images/about/about-engine.webp"
   },
   {
     "id": "vid-4",
-    "vehicle": "TOYOTA AVANZA VELOZ",
-    "title": "Restorasi Kompresor AC Avanza Dingin Menggigil Maksimal",
-    "description": "Kuras oli kompresor lama dan freon R134a murni temperatur 4 derajat Celsius.",
-    "views": "29.0K",
-    "platform": "TikTok Feed",
-    "platformIcon": "play_circle",
-    "platformColor": "text-accent-amber-deep",
-    "platformUrl": "https://www.tiktok.com",
-    "thumbnail": "https://lh3.googleusercontent.com/aida-public/AB6AXuBwLqng_IvuWQdMeM_ixHvHn6U7MIKVw1r0rwL7oHS-sD5E_7ZQ14mfgYIu0j2l96nh7qsaLha2d8OEnk7N-FlPRJg1xRgaynyOr5RZvKt9710vneMdhqaN_6MSHr86qQXstuQqwerRM_-Zw1n9HROFZsrxcOfVYf5sNSvi5bwy7XKD3v-OI_b4cnL4cQyfrfTAUMnEnRr6H00o0bAQ0UGRbBVyRw50t6m2Xy56X7Z_"
+    "vehicle": "Aktivitas Workshop",
+    "title": "Suasana Harian Bengkel Mobil Bunul",
+    "description": "Aktivitas servis rutin dan penanganan kendaraan di bay workshop.",
+    "platform": "TikTok",
+    "platformUrl": "https://www.tiktok.com/@bengkelmobilbunul/video/7701580487688473876",
+    "thumbnail": "/images/hero/hero-workshop.webp"
+  },
+  {
+    "id": "vid-5",
+    "vehicle": "Sistem Pendingin",
+    "title": "Tips Gampang Cek Kondisi Radiator dari Rumah",
+    "description": "Panduan pemeriksaan awal sistem pendingin dan radiator agar terhindar dari overheat.",
+    "platform": "YouTube Shorts",
+    "platformUrl": "https://www.youtube.com/shorts/PFfrzpCfef0",
+    "thumbnail": "https://i.ytimg.com/vi/PFfrzpCfef0/oar2.jpg"
+  },
+  {
+    "id": "vid-6",
+    "vehicle": "AC Mobil",
+    "title": "Servis AC Mobil di Bengkel Mobil Bunul",
+    "description": "Perawatan dan pengecekan sistem AC mobil agar kabin kembali sejuk optimal.",
+    "platform": "YouTube Shorts",
+    "platformUrl": "https://www.youtube.com/shorts/eFkGuWFy_ns",
+    "thumbnail": "https://i.ytimg.com/vi/eFkGuWFy_ns/oar2.jpg"
   }
 ]
